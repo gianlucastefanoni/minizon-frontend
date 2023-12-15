@@ -1,0 +1,22 @@
+<div class="container">
+  <h2>Product</h2>
+  <div class="row p-2 border rounded">
+    <h3 class="col-7">{{ product.name }}</h3>
+    <h4 class="col-5">{{ product.price }}$</h4>
+    <small class="text-secondary col-12">Description</small>
+    <p class="col-12 border-bottom pb-2">{{ product.description }}</p>
+    <p class="col-5 border-bottom pb-2">Quantity available</p><p class="col-7 border-bottom pb-2">{{ product.qty_available }}</p>
+    <h5 class="col-12">Dimension</h5>
+    <p class="col-5 border-bottom pb-2">Width</p><p class="col-7 border-bottom pb-2">{{ product.width }}cm</p>
+    <p class="col-5 border-bottom pb-2">Height</p><p class="col-7 border-bottom pb-2">{{ product.height }}cm</p>
+    <div class="col-12 row" *ngIf="!isGuest">
+      <small class="col-12 text-secondary ps-3">QTY</small>
+      <div class="col-4">
+        <input class="form-control" type="number" [(ngModel)]="qty" />
+      </div>
+      <button class="btn btn-primary col-8" (click)="addToCart()">
+        ADD TO CART
+      </button>
+    </div>
+  </div>
+</div>

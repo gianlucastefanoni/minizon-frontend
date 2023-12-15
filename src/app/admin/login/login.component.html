@@ -1,0 +1,60 @@
+<div class="container">
+  <h1 class="text-center">Administrator Login</h1>
+  <div>
+    <form #form="ngForm" (ngSubmit)="onEnter(form)">
+      <div class="w-50 mx-auto">
+        <div class="row w-100">
+          <div class="form-group col">
+            <label for="email">Email</label>
+            <input
+              id="eamil"
+              name="email"
+              class="form-control"
+              type="email"
+              [(ngModel)]="email"
+              required
+              #emailField="ngModel"
+              [class.field-error]="form.submitted && emailField.invalid"
+              pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+            />
+            <small
+              class="text-danger"
+              *ngIf="form.submitted && emailField.invalid"
+            >
+              Email not valid
+            </small>
+          </div>
+        </div>
+        <div class="row w-100">
+          <div class="form-group col">
+            <label for="password">Password</label>
+            <input
+              id="password"
+              name="password"
+              class="form-control"
+              type="password"
+              [(ngModel)]="password"
+              placeholder="••••••••"
+              required
+              #passwordField="ngModel"
+              [class.field-error]="form.submitted && passwordField.invalid"
+            />
+          </div>
+        </div>
+        <div class="row w-100 px-2 py-3">
+          <button type="submit" class="btn btn-primary col-12">LOGIN</button>
+        </div>
+        <div class="row w-100">
+          <div
+            class="alert alert-danger p-2 mx-auto"
+            style="font-size: 12px; width: 284px"
+            role="alert"
+            *ngIf="error"
+          >
+            {{ errorMsg }}
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

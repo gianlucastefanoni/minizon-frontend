@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="p-2">
+    <h1>All orders</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Order number</th>
+          <th scope="col">Insert date</th>
+          <th scope="col">Ship date</th>
+          <th scope="col">Cancel date</th>
+          <th scope="col">User id</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <td>
+            <h5 class="col-3">{{ order.id_order }}</h5>
+          </td>
+          <td>{{ order.insert_date }}</td>
+          <td>
+            <p>
+              {{ order.ship_date }}
+            </p>
+            <div *ngIf="order.ship_date === 'null' && order.cancel_date === 'null'">
+              <button class="btn btn-success" (click)="shipOrder()">SHIP</button>
+            </div>
+          </td>
+          <td>
+            <p>
+              {{ order.cancel_date }}
+            </p>
+            <div *ngIf=" order.ship_date === 'null' && order.cancel_date === 'null'">
+              <button class="btn btn-danger" (click)="cancelOrder()">CANCEL</button>
+            </div>
+          </td>
+          <td>{{ order.id_client }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

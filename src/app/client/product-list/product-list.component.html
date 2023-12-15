@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="form-group has-search">
+        <span class="fa fa-search form-control-feedback"></span>
+        <input
+          id="searchField"
+          name="searchField"
+          [(ngModel)]="searchField"
+          type="text"
+          class="form-control"
+          placeholder="Search"
+          (input)="onSearchChange()"
+        />
+        <p class="text-secondary">
+          Total products: {{ filteredProducts.length }}
+        </p>
+      </div>
+      <div *ngFor="let product of filteredProducts">
+        <div class="bg-white border rounded py-3 px-4 mb-2">
+          <a
+            [routerLink]="['/product', product.id_product]"
+            class="text-decoration-none"
+          >
+            <h4>{{ product.name }}</h4>
+            <div class="text-dark">{{ product.description }}</div>
+            <p class="text-secondary">{{ product.price }}$</p>
+          </a>
+          <div class="row" *ngIf="!isGuest">
+            <small class="col-12 text-secondary ps-3">QTY</small>
+            <div class="col-4">
+              <input class="form-control" type="number" [(ngModel)]="qty" />
+            </div>
+            <button class="btn btn-primary col-8" (click)="addToCart()">
+              ADD TO CART
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

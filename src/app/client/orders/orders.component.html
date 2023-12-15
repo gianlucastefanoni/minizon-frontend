@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="border rounded p-2 mb-4">
+    <h1>Your cart</h1>
+    <div>
+      <div class="row">
+        <p class="col-3">Name</p>
+        <p class="col-4">Description</p>
+        <p class="col-2">QTY</p>
+        <p class="col-2">Price</p>
+      </div>
+      <div class="row" *ngFor="let product of cart.products">
+        <h5 class="col-3">{{ product.name }}</h5>
+        <p class="col-4 text-truncate">{{ product.description }}</p>
+        <p class="col-2">{{ product.qty }}</p>
+        <p class="col-2">{{ product.price }}$</p>
+        <button class="btn col-1" (click)="removeProduct()">
+          <i class="fa fa-trash" aria-hidden="true"></i>
+        </button>
+      </div>
+      <button class="btn btn-primary w-100" (click)="sendOrder()">ORDER</button>
+    </div>
+  </div>
+  <div class="border rounded p-2">
+    <h1>Your orders</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Order number</th>
+          <th scope="col">Insert date</th>
+          <th scope="col">Ship date</th>
+          <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <td>
+            <a
+              [routerLink]="['/order-details', order.id_order]"
+              class="text-decoration-none row"
+            >
+              <h5 class="col-3">{{ order.id_order }}</h5>
+            </a>
+          </td>
+          <td>{{ order.insert_date }}</td>
+          <td>{{ order.ship_date }}</td>
+          <td>{{ order.price }}$</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

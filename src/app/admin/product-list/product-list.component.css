@@ -1,0 +1,11 @@
+.btn-new {
+    width: fit-content;
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 60px;
+    transition: transform 0.3s ease-in-out;
+  }
+  .btn-new:hover {
+    transform: scale(1.2);
+  }

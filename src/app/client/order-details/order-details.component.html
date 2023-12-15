@@ -1,0 +1,47 @@
+<div class="container">
+  <h3>Order: {{ order.id_order }}</h3>
+  <div class="row mb-2 p-2 border rounded">
+    <h5 class="col-12 fw-bold">Details</h5>
+    <strong class="col-4">Insert Date: </strong>
+    <p class="col-8">{{ order.insert_date }}</p>
+    <strong class="col-4">Shipment Date: </strong>
+    <p class="col-8">{{ order.ship_date }}</p>
+    <strong class="col-4">Address</strong>
+    <p class="col-8">
+      {{ order.street }}, {{ order.city }}, {{ order.zip_code }},
+      {{ order.nation }}
+    </p>
+    <strong
+      class="col-4"
+      *ngIf="order.cancel_date !== null && order.cancel_date !== 'null'"
+    >
+      Cancel Date:
+    </strong>
+    <p
+      class="col-8"
+      *ngIf="order.cancel_date !== null && order.cancel_date !== 'null'"
+    >
+      {{ order.ship_date }}
+    </p>
+    <button class="btn btn-danger" *ngIf="cancellable" (click)="cancelOrder()">
+      CANCEL
+    </button>
+  </div>
+  <div class="row p-2 border rounded">
+    <h5 class="col-12 fw-bold">Product List</h5>
+    <div>
+      <div class="row">
+        <p class="col-3">Name</p>
+        <p class="col-5">Description</p>
+        <p class="col-2">QTY</p>
+        <p class="col-2">Price</p>
+      </div>
+      <div class="row" *ngFor="let product of order.products">
+        <h5 class="col-3">{{ product.name }}</h5>
+        <p class="col-5 text-truncate">{{ product.description }}</p>
+        <p class="col-2">{{ product.qty }}</p>
+        <p class="col-2">{{ product.price }}$</p>
+      </div>
+    </div>
+  </div>
+</div>
